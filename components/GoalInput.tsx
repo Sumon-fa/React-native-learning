@@ -14,6 +14,7 @@ const GoalInput = ({setGoals}: GoalInputProps) => {
       ...prev,
       {text: enteredGoalText, id: Math.random().toString()},
     ]);
+    setGoalText('');
   }
   return (
     <View style={styles.inputContainer}>
@@ -21,6 +22,7 @@ const GoalInput = ({setGoals}: GoalInputProps) => {
         style={styles.textInput}
         placeholder="Your Course Goals"
         onChangeText={text => setGoalText(text)}
+        value={enteredGoalText}
       />
       <Button title="Add Goal" onPress={addInputHandler} />
     </View>

@@ -1,12 +1,21 @@
 import React from 'react';
-import {View, FlatList, Text, StyleSheet} from 'react-native';
+import {View, FlatList, Text, StyleSheet, Pressable} from 'react-native';
 import {Goals} from '../App';
 
 interface GoalItemProps {
   goals: Goals[];
+  setGoals: React.Dispatch<React.SetStateAction<Goals[]>>;
 }
 
-const GoalItem = ({goals}: GoalItemProps) => {
+const GoalItem = ({goals, setGoals}: GoalItemProps) => {
+  function removeHandler(id: string) {
+    setGoals(prevItem => {
+      return prevItem.filter(item => {
+        return item.id !== id;
+      });
+    });
+  }
+
   return (
     <View style={styles.goalsContainer}>
       <FlatList
@@ -14,7 +23,12 @@ const GoalItem = ({goals}: GoalItemProps) => {
         renderItem={itemData => {
           return (
             <View style={styles.goalItem}>
-              <Text style={styles.goalText}>{itemData.item.text}</Text>
+              <Pressable
+                android_ripple={{color: '#dddddd'}}
+                onPress={() => removeHandler(itemData.item.id)}
+                style={({pressed}) => pressed && styles.pressedItem}>
+                <Text style={styles.goalText}>{itemData.item.text}</Text>
+              </Pressable>
             </View>
           );
         }}
@@ -37,9 +51,12 @@ const styles = StyleSheet.create({
     margin: 8,
     borderRadius: 6,
     backgroundColor: '#5e0acc',
-    padding: 8,
   },
   goalText: {
     color: 'white',
+    padding: 8,
+  },
+  pressedItem: {
+    opacity: 0.5,
   },
 });

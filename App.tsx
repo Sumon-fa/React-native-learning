@@ -21,7 +21,7 @@ function App() {
   return (
     <View style={styles.appContainer}>
       <GoalInput setGoals={setGoals} />
-      <GoalItem goals={goals} />
+      <GoalItem goals={goals} setGoals={setGoals} />
     </View>
   );
 }
