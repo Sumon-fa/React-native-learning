@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
 import {Button, StyleSheet, TextInput, View} from 'react-native';
+import {Goals} from '../App';
 
-interface Goals {
-  text: string;
-  id: string;
-}
 interface GoalInputProps {
   setGoals: React.Dispatch<React.SetStateAction<Goals[]>>;
 }
