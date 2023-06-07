@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, StyleSheet, View} from 'react-native';
+import {Button, StatusBar, StyleSheet, View} from 'react-native';
 import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
 
@@ -17,19 +17,22 @@ function App() {
   }
 
   return (
-    <View style={styles.appContainer}>
-      <Button
-        title="Add New Goal"
-        color="#5e0acc"
-        onPress={startAddGoalHandler}
-      />
-      <GoalInput
-        setModalIsVisible={setModalIsVisible}
-        setGoals={setGoals}
-        visible={modalIsVisible}
-      />
-      <GoalItem goals={goals} setGoals={setGoals} />
-    </View>
+    <>
+      <StatusBar barStyle="light-content" />
+      <View style={styles.appContainer}>
+        <Button
+          title="Add New Goal"
+          color="#5e0acc"
+          onPress={startAddGoalHandler}
+        />
+        <GoalInput
+          setModalIsVisible={setModalIsVisible}
+          setGoals={setGoals}
+          visible={modalIsVisible}
+        />
+        <GoalItem goals={goals} setGoals={setGoals} />
+      </View>
+    </>
   );
 }
 
@@ -40,5 +43,6 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingHorizontal: 16,
     flex: 1,
+    backgroundColor: '#1e085a',
   },
 });
