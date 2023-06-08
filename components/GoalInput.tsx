@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {Button, Image, Modal, StyleSheet, TextInput, View} from 'react-native';
 import {Goals} from '../App';
+import 'react-native-get-random-values';
+import {v4 as uuidv4} from 'uuid';
 
 interface GoalInputProps {
   setGoals: React.Dispatch<React.SetStateAction<Goals[]>>;
@@ -16,10 +18,7 @@ const GoalInput = ({setGoals, visible, setModalIsVisible}: GoalInputProps) => {
   }
 
   function addInputHandler() {
-    setGoals(prev => [
-      ...prev,
-      {text: enteredGoalText, id: Math.random().toString()},
-    ]);
+    setGoals(prev => [...prev, {text: enteredGoalText, id: uuidv4()}]);
     setGoalText('');
     setModalIsVisible(false);
   }
