@@ -32,8 +32,8 @@ const GoalItem = ({goals, setGoals}: GoalItemProps) => {
             </View>
           );
         }}
-        keyExtractor={(item, index) => {
-          return index.toString();
+        keyExtractor={item => {
+          return item.id;
         }}
         alwaysBounceVertical={false}
       />
